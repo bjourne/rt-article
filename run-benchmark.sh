@@ -19,7 +19,10 @@ triangle_h=${embree}/kernels/geometry/triangle.h
 sanm_args1="--vp 8.854205132 1.856649399 7.360687256 \
          --vi 13.88171768 2.228513956 -2.522052765 \
          --vu 0 1 0 --fov 90 --righthanded"
-sanm_args2="TODO"
+sanm_args2="--vp 22.80886841 1.800413132 2.112316132 \
+        --vi 19.92428589 1.44120419 2.852566957 \
+        --vu 0 1 0 --fov 90 --righthanded \
+        --size 1024 1024"
 lucy_args1="--vp 0.1194648743 16.96469498 3.015714645 \
         --vi 0.1176664829 19.96464157 3.024817467 \
         --vu 0 1 0 --fov 90 --righthanded"
