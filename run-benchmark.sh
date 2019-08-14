@@ -37,8 +37,13 @@ ispc=${embree_build}/viewer_ispc
 stream=${embree_build}/viewer_stream
 
 if [ $# = 0 ]; then
-    echo "Please specify model: lucy1, lucy2, sanm1, sanm2, crown or dragon."
+    echo "Usage: lucy1|lucy2|sanm1|sanm2|crown|dragon [EMBREE|HH|HH2|...]"
     exit 1
+fi
+if [ $# = 2 ]; then
+    isects=($2)
+else
+    isects=(EMBREE HH HH2 SF01 MT BW12 BW9 SHEV DS EMBREE2)
 fi
 case $1 in
     lucy1)
@@ -63,7 +68,6 @@ case $1 in
     "Echo wrong model choice."
     exit 1
 esac
-isects=(EMBREE HH HH2 SF01 MT BW12 BW9 SHEV DS EMBREE2)
 for isect in ${isects[@]}; do
     sed_repl="s@#define ISECT_METHOD .*@#define ISECT_METHOD ISECT_${isect}@g"
     sed -i "${sed_repl}" $triangle_h
