@@ -40,3 +40,11 @@ intersection algorithm, find the line
 
 in `kernels/geometry/triangle.h`, modify it accordingly and recompile
 Embree.
+
+
+## Algorithm implementations
+
+For ease of access, implementations of the benchmarked algorithms can
+also be found in the `src` directory in this repository. However,
+there may be slight differences in them if I forget to update them in
+tandem with the Embree fork.
