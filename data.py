@@ -106,30 +106,39 @@ data['comp1', 'spe5', 'crown'] = [
     ['ds',     'y', [13.108]]
     ]
 
-def compute_pcts(comp, id, algo):
-    header = '%s, %s, %s' % (comp, id, algo)
-    line = '=' * len(header)
-    print(header)
-    print(line)
-    seq = data[comp, id, algo]
+def print_line(algo, rates, div):
+    if not rates:
+        fps = '?'
+    else:
+        fps = np.mean(rates)
+        fps = fps / div
+        # if packets == 'y':
+        #     fps = fps / embreeK
+        # else:
+        #     fps = fps / embree1
+        fps = int(round(fps*100))
+    print('%6s %7s' % (algo, fps))
 
+def compute_pcts(comp, id, algo):
+    seq = data[comp, id, algo]
+    header = 'single rays: %s, %s, %s' % (comp, id, algo)
+    print(header)
+    print('=' * len(header))
     assert seq[0][0] == 'embree'
     assert seq[1][0] == 'embree'
     embree1 = np.mean(seq[0][2])
-    embreeK = np.mean(seq[1][2])
-    print('%6s %2s %7s' % (seq[0][0], seq[0][1], embree1))
-    print('%6s %2s %7s' % (seq[1][0], seq[1][1], embreeK))
+    print('%6s %7s' % (seq[0][0], round(embree1, 2)))
     for algo, packets, rates in seq[2:]:
-        if not rates:
-            fps = '?'
-        else:
-            fps = np.mean(rates)
-            if packets == 'y':
-                fps = fps / embreeK
-            else:
-                fps = fps / embree1
-            fps = int(round(fps*100))
-        print('%6s %2s %7s' % (algo, packets, fps))
+        if packets == 'n':
+            print_line(algo, rates, embree1)
+    header = 'ray packets: %s, %s, %s' % (comp, id, algo)
+    print(header)
+    print('=' * len(header))
+    embreeK = np.mean(seq[1][2])
+    print('%6s %7s' % (seq[1][0], round(embreeK, 1)))
+    for algo, packets, rates in seq[2:]:
+        if packets == 'y':
+            print_line(algo, rates, embreeK)
 
 if __name__ == '__main__':
-    compute_pcts('comp1', 'spo6', 'lucy1')
+    compute_pcts('comp1', 'spo1', 'sanm1')
