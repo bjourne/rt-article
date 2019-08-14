@@ -63,7 +63,7 @@ case $1 in
     "Echo wrong model choice."
     exit 1
 esac
-isects=(EMBREE HH HH2 SF01 MT BW12 BW9 SHEV DS)
+isects=(EMBREE HH HH2 SF01 MT BW12 BW9 SHEV DS EMBREE2)
 for isect in ${isects[@]}; do
     sed_repl="s@#define ISECT_METHOD .*@#define ISECT_METHOD ISECT_${isect}@g"
     sed -i "${sed_repl}" $triangle_h
