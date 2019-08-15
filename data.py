@@ -69,6 +69,10 @@ data['comp1', 'spo9', 'sanm1'] = [
     ['sf01',    'y', [24.598]],
     ['shev',    'n', [10.889]],
     ['shev',    'y', [25.928]],
+
+data['comp2', 'x', 'crown'] = [
+    ['embree', 'n', [3.945]],
+    ['embree', 'y', [6.367]]
     ]
 
 data['comp1', 'spo8', 'sanm2'] = [
