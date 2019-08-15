@@ -1,8 +1,8 @@
-# Performance Survey of Modern Ray/Triangle Intersection Algorithms
+# Performance of Ray/Triangle Intersection Algorithms in Embree
 
 This repository contains raw data and information on how to reproduce
-benchmark figures from my unpublished article "Performance Survey of
-Modern Ray/Triangle Intersection Algorithms."
+benchmark results from my unpublished article "Performance of
+Ray/Triangle Intersection Algorithms in Embree."
 
 ## Reproduction instructions
 
