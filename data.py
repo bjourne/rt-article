@@ -68,7 +68,8 @@ data['comp1', 'spo9', 'sanm1'] = [
     ['sf01',    'n', [12.474]],
     ['sf01',    'y', [24.598]],
     ['shev',    'n', [10.889]],
-    ['shev',    'y', [25.928]],
+    ['shev',    'y', [25.928]]
+]
 
 data['comp1', 'spo8', 'sanm2'] = [
     ['embree',  'n', [3.343]],
@@ -218,7 +219,7 @@ data['comp2', 'x', 'lucy2'] = [
     ['shev',    'n', [17.123]],
     ['shev',    'y', [36.595]],
     ['ds',      'n', [18.276]],
-    ['ds',      'y', [29.214]]
+    ['ds',      'y', [29.214]],
     ['embree2', 'n', [19.940]],
     ['embree2', 'y', [29.875]]
 ]
@@ -243,7 +244,7 @@ data['comp2', 'x', 'sanm1'] = [
     ['shev',    'n', [5.660]],
     ['shev',    'y', [12.688]],
     ['ds',      'n', [5.954]],
-    ['ds',      'y', [10.540]]
+    ['ds',      'y', [10.540]],
     ['embree2', 'n', [6.525]],
     ['embree2', 'y', [10.873]]
 ]
@@ -304,4 +305,4 @@ def compute_pcts(comp, id, view):
             print_line(algo, rates, embreeK)
 
 if __name__ == '__main__':
-    compute_pcts('comp1', 'spo6', 'dragon')
+    compute_pcts('comp2', 'x', 'crown')
