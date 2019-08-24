@@ -29,6 +29,7 @@ lucy_args1="--vp 0.1194648743 16.96469498 3.015714645 \
 lucy_args2="--vp -283.4347229 645.4871216 184.485611 \
         --vi -280.9531555 644.796936 182.9482117 \
         --vu 0 1 0 --fov 90 --righthanded"
+dragon_args="--size 4096 4096 --benchmark 50 500 --threads 1"
 
 bench_args="--benchmark 400 10000 --threads 1"
 
@@ -62,7 +63,7 @@ case $1 in
     bench_args="-c $crown $bench_args"
     ;;
     dragon)
-    bench-args="-c $asian_dragon $bench_args"
+    bench_args="-c $asian_dragon $dragon_args"
     ;;
     *)
     "Echo wrong model choice."
