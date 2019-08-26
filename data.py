@@ -1,3 +1,5 @@
+from collections import defaultdict
+import matplotlib.pyplot as plt
 import numpy as np
 
 data = {}
@@ -298,6 +300,55 @@ data['comp2', 'x', 'dragon'] = [
 ]
 
 
+def compute_avg_pct():
+    series = defaultdict(list)
+    for key, value in data.items():
+        for this_algo, this_packets, fps in value:
+            # Fix this to support multiple data series
+            fps = fps[0]
+            if this_algo == 'embree':
+                if this_packets == 'n':
+                    pct_1ray = fps
+                else:
+                    pct_Krays = fps
+            if this_packets == 'n':
+                pct = pct_1ray
+            else:
+                pct = pct_Krays
+            series[this_algo, this_packets].append(fps / pct)
+    series = {k : round(np.mean(v)*100) for k, v in series.items()}
+
+    algo_order = ('embree2',
+                  'bw9', 'bw12', 'ds', 'hh', 'hh2',
+                  'mt', 'sf01', 'shev')
+
+    means_1rays = [series[algo, 'n'] for algo in algo_order]
+    means_Krays = [series[algo, 'y'] for algo in algo_order]
+
+    fix, ax = plt.subplots(figsize = (8, 4))
+    ax.axhline(y = 100, linestyle = 'dotted', color = 'k', linewidth = 0.8)
+    index = np.arange(len(algo_order))
+    bar_width = 0.35
+    opacity = 0.8
+    print(means_1rays, means_Krays)
+
+    rects1 = plt.bar(index, means_1rays, bar_width, opacity,
+                     color = 'b',
+                     label = 'Single rays')
+
+    rects2 = plt.bar(index + bar_width + 0.04, means_Krays, bar_width, opacity,
+                     color = 'g',
+                     label = 'Ray packets')
+
+    plt.ylabel('Relative framerate')
+    #plt.title("Algorithm performance relative to Embree's default")
+    plt.legend(framealpha = 0.4)
+    plt.xticks(index + bar_width / 2 + 0.02, algo_order, rotation = 45)
+
+    plt.tight_layout()
+    plt.savefig('algos.png')
+
+
 def print_line(algo, rates, div):
     if not rates:
         fps = '?'
@@ -330,3 +381,4 @@ def compute_pcts(comp, id, view):
 
 if __name__ == '__main__':
     compute_pcts('comp2', 'x', 'crown')
+    compute_avg_pct()
