@@ -12,8 +12,8 @@ Embree needs to be checked out:
 
     $ git clone https://github.com/bjourne/embree
 
-All the work is done on the branch "my-hacksK" (fix this). Build my
-version of Embree on that branch using the following:
+All the work exists on the branch `rt-article`. Build Embree on that
+branch using:
 
     $ mkdir build
     $ cd build
@@ -25,8 +25,7 @@ version of Embree on that branch using the following:
         -DEMBREE_GEOMETRY_USER=OFF ..
     $ make
 
-Refer to Embree's official repository for general compilation
-instructions.
+Refer to Embree's own repository for general compilation instructions.
 
 When running the programs viewer, viewer_stream, viewer_ispc,
 pathtracer and pathtracer_ispc, Embree will print out the message
@@ -46,5 +45,5 @@ Embree.
 
 For ease of access, implementations of the benchmarked algorithms can
 also be found in the `src` directory in this repository. However,
-there may be slight differences in them if I forget to update them in
-tandem with the Embree fork.
+there may be slight differences in them if I forget to syncronize them
+with the Embree fork.
