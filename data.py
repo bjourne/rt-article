@@ -298,6 +298,19 @@ data['comp2', 'x', 'dragon'] = [
     ['embree2', 'y', [0.5188]]
 ]
 
+########################################################################
+data['comp3', 'xeon', 'sanm1'] = [
+    ['embree',  'n', [5.3486]],
+    ['embree',  'y', [7.0062]],
+    ['hh',      'n', [5.2844]],
+    ['hh',      'y', [7.4863]],
+    ['hh2',     'n', [5.2993]],
+    ['hh2',     'y', [7.6148]],
+    ['mt',      'n', [5.3028]],
+    ['mt',      'y', [7.4701]],
+]
+
+
 
 def compute_avg_pct():
     series = defaultdict(list)
@@ -365,7 +378,7 @@ def compute_pcts(comp, id, view):
     assert seq[0][0] == 'embree'
     assert seq[1][0] == 'embree'
     embree1 = np.mean(seq[0][2])
-    print('%8s %7s' % (seq[0][0], round(embree1, 2)))
+    print('%8s %7s' % (seq[0][0], round(embree1, 3)))
     for algo, packets, rates in seq[2:]:
         if packets == 'n':
             print_line(algo, rates, embree1)
@@ -373,11 +386,11 @@ def compute_pcts(comp, id, view):
     print(header)
     print('=' * len(header))
     embreeK = np.mean(seq[1][2])
-    print('%8s %7s' % (seq[1][0], round(embreeK, 2)))
+    print('%8s %7s' % (seq[1][0], round(embreeK, 3)))
     for algo, packets, rates in seq[2:]:
         if packets == 'y':
             print_line(algo, rates, embreeK)
 
 if __name__ == '__main__':
-    compute_pcts('comp2', 'x', 'crown')
+    #compute_pcts('comp1', 'spo6', 'dragon')
     compute_avg_pct()
